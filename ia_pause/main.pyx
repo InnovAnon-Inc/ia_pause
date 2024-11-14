@@ -17,6 +17,9 @@ logger           = get_logger()
 #
 ##
 
+class IndefinitePauseError(Exception):
+	""" Robot failed to cause a Stop-Button problem """
+
 async def tick(bar:Bar, interval:float,)->None:
 	bar.next()
 	await asyncio.sleep(interval,)
@@ -32,7 +35,7 @@ async def _main(message:str='Momentarily Paused', max_value:int=20, wait_time:fl
 	interval:float = wait_time / float(max_value)
 	assert (interval  > 0)
 	try:
-		await ticker(message:str, max_value:int, interval:float,)
+		await ticker(message=message, max_value=max_value, interval=interval,)
 		return True
 	except KeyboardInterrupt as error:
 		await logger.aerror(error)
@@ -49,8 +52,10 @@ def main()->None:
 	))
 	if result:
 		logger.info('Proceeding')
+		return
 	else:
 		logger.info('Terminated')
+		raise IndefinitePauseError()
 
 if __name__ == '__main__':
 	main()
