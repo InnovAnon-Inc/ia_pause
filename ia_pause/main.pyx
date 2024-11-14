@@ -7,12 +7,10 @@
 import asyncio
 import os
 from typing                                  import List, Optional, Iterable
-from typing                                  import ParamSpec
 
 from progress.bar                            import Bar
 from structlog                               import get_logger
 
-P     :ParamSpec = ParamSpec('P')
 logger           = get_logger()
 
 ##
