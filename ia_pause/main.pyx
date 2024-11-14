@@ -23,7 +23,7 @@ async def tick(bar:Bar, interval:float,)->None:
 	bar.next()
 	await asyncio.sleep(interval,)
 
-async def _main(message:str='Momentarily Paused', max_value:int=10, wait_time:float=3,)->None:
+async def _main(message:str='Momentarily Paused', max_value:int=20, wait_time:float=5,)->None:
 	assert (max_value > 0)
 	assert (wait_time > 0)
 	interval:float = wait_time / float(max_value)
@@ -34,8 +34,8 @@ async def _main(message:str='Momentarily Paused', max_value:int=10, wait_time:fl
 
 def main()->None:
 	message  :str   =     os.getenv('PAUSE_MESSAGE', 'Waiting for you to come to your senses')
-	max_value:int   = int(os.getenv('PAUSE_COUNT',   '10'))
-	wait_time:float = int(os.getenv('PAUSE_TIMER',    '3'))
+	max_value:int   = int(os.getenv('PAUSE_COUNT',   '20'))
+	wait_time:float = int(os.getenv('PAUSE_TIMER',    '5'))
 	asyncio.run(_main(
 		message=message,
 		max_value=max_value,
