@@ -5,6 +5,10 @@ services:
       context:        .
       tags:
         - innovanon/ia_pause:latest
+        -           ia_pause:latest
+        - innovanon/ia_pause
+        -           ia_pause
+    image:            innovanon/ia_pause
     restart:          no
     logging:
       driver:         syslog   
