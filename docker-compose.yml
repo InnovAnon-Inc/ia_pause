@@ -4,7 +4,7 @@ services:
     build:
       context:        .
       tags:
-        - ia_pause:latest
+        - innovanon/ia_pause:latest
     restart:          no
     logging:
       driver:         syslog   
